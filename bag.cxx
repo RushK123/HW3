@@ -50,7 +50,18 @@ namespace csen79 {
             throw std::out_of_range(std::string("index out of range"));
         data[i] = (Data) d;
     }
-    void Bag::enQ(const Data &) {};
+
+    //Made Changes to enQ 10/6/25
+    void Bag::enQ(const Data &) {
+        if (count >= DATASIZE){
+            throw "The Queue is Full. DeQ Items to Add More";
+        }
+        if (rear < CAPACITY-1){
+            rear++;
+        }
+        this->setData((rear+1) % DATASIZE, element);
+        count++;
+    };
     Bag::Data Bag::deQ() {return 0;};
     void Bag::print() const {};
 }
